@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\Catagory;
 
 
 class HomeController extends Controller
@@ -24,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('claint.home');
+        $books= Book::orderby('id','desc')->paginate(12);
+        return view('claint.home',compact('books'));
     }
 }
